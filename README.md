@@ -4,6 +4,7 @@ xPayments Network Status.
 ## Prerequisite
 * node
 * npm
+* grunt-cli
 
 ## Installation
 Make sure you have node.js and npm installed.
@@ -14,19 +15,20 @@ Clone the repository and install the dependencies
 git clone https://github.com/xpaymentsorg/xps-netstats
 cd xps-netstats
 npm install
+```
+
+Install grunt-cli with npm
+
+```bash
 sudo npm install -g grunt-cli
 ```
 
-##Build the resources
-NetStats features two versions: the full version and the lite version. In order to build the static files you have to run grunt tasks which will generate dist directories containing the js and css files, fonts and images.
-
-
-To build the full version run
+To build run
 ```bash
 grunt
 ```
 
-##Run
+## Run
 
 ```bash
 npm start
