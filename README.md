@@ -31,7 +31,7 @@ grunt
 ## Run
 
 ```bash
-npm start
+WS_SECRET=mysecret npm start
 ```
 
 see the interface at http://localhost:3000
