@@ -448,8 +448,8 @@ svg .y.axis .tick:first-child text {
 
 .logo {
 	height: 80px;
-	margin: 20px 0;
-	float: right;
+	margin: 10px 0;
+	float: left;
 }
 
 .title {
@@ -458,7 +458,7 @@ svg .y.axis .tick:first-child text {
 
 .titleText {
 	font-size: 40px;
-	line-height: 60px;
+	line-height: 65px;
 }
 
 .disclaimer {
