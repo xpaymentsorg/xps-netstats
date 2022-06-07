@@ -8,8 +8,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	// Main Stats init
 	// ---------------
 
-	$scope.networkName = "";
-	$scope.frontierHash = '0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa';
+	$scope.networkName = "xPayments";
+	// $scope.frontierHash = '0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa';
 	$scope.nodesTotal = 0;
 	$scope.nodesActive = 0;
 	$scope.bestBlock = 0;
@@ -18,9 +18,9 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	$scope.upTimeTotal = 0;
 	$scope.avgBlockTime = 0;
 	$scope.blockPropagationAvg = 0;
-	$scope.avgHashrate = 0;
+	// $scope.avgHashrate = 0;
 	$scope.avgTransactionRate = 0;
-	$scope.uncleCount = 0;
+	// $scope.uncleCount = 0;
 	$scope.bestStats = {};
 
 	$scope.lastGasLimit = _.fill(Array(MAX_BINS), 2);
@@ -33,14 +33,14 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 
 	$scope.nodes = [];
-	$scope.map = [];
+	// $scope.map = [];
 	$scope.blockPropagationChart = [];
-	$scope.uncleCountChart = _.fill(Array(MAX_BINS), 2);
+	// $scope.uncleCountChart = _.fill(Array(MAX_BINS), 2);
 	$scope.coinbases = [];
 
 	$scope.latency = 0;
 
-	$scope.currentApiVersion = "0.1.1";
+	$scope.currentApiVersion = "0.0.1";
 
 	$scope.predicate = $localStorage.predicate || ['-pinned', '-stats.active', '-stats.block.number', 'stats.block.propagation'];
 	$scope.reverse = $localStorage.reverse || false;
@@ -311,12 +311,12 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 				break;
 
-			case "uncleCount":
-				$scope.uncleCount = data[0] + data[1];
-				data.reverse();
-				$scope.uncleCountChart = data;
+			// case "uncleCount":
+			// 	$scope.uncleCount = data[0] + data[1];
+			// 	data.reverse();
+			// 	$scope.uncleCountChart = data;
 
-				break;
+			// 	break;
 
 			case "charts":
 				$scope.networkName = data.networkName;
@@ -324,8 +324,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				if( !_.isEqual($scope.avgBlockTime, data.avgBlocktime) )
 					$scope.avgBlockTime = data.avgBlocktime;
 
-				if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
-					$scope.avgHashrate = data.avgHashrate;
+				// if( !_.isEqual($scope.avgHashrate, data.avgHashrate) )
+				// 	$scope.avgHashrate = data.avgHashrate;
 
 				if( !_.isEqual($scope.avgTransactionRate, data.avgTransactionRate) )
 					$scope.avgTransactionRate = data.avgTransactionRate;
@@ -344,12 +344,12 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 					$scope.blockPropagationAvg = data.propagation.avg;
 				}
 
-				data.uncleCount.reverse();
+				// data.uncleCount.reverse();
 
-				if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
-					$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
-					$scope.uncleCountChart = data.uncleCount;
-				}
+				// if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
+				// 	$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
+				// 	$scope.uncleCountChart = data.uncleCount;
+				// }
 
 				if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
 					$scope.transactionDensity = data.transactions;
@@ -490,25 +490,25 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 			return total + node.stats.uptime;
 		}, 0) / $scope.nodes.length;
 
-		$scope.map = _.map($scope.nodes, function (node) {
-			var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
+		// $scope.map = _.map($scope.nodes, function (node) {
+		// 	var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
 
-			if(node.geo != null)
-				return {
-					radius: 3,
-					latitude: node.geo.ll[0],
-					longitude: node.geo.ll[1],
-					nodeName: node.info.name,
-					fillClass: "text-" + fill,
-					fillKey: fill,
-				};
-			else
-				return {
-					radius: 0,
-					latitude: 0,
-					longitude: 0
-				};
-		});
+		// 	if(node.geo != null)
+		// 		return {
+		// 			radius: 3,
+		// 			latitude: node.geo.ll[0],
+		// 			longitude: node.geo.ll[1],
+		// 			nodeName: node.info.name,
+		// 			fillClass: "text-" + fill,
+		// 			fillKey: fill,
+		// 		};
+		// 	else
+		// 		return {
+		// 			radius: 0,
+		// 			latitude: 0,
+		// 			longitude: 0
+		// 		};
+		// });
 	}
 
 	function updateBestBlock()
@@ -610,13 +610,14 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 	// very simple xss filter
 	function xssFilter(obj){
-		if(_.isArray(obj)) {
-			return _.map(obj, xssFilter);
+		// if(_.isArray(obj)) {
+		// 	return _.map(obj, xssFilter);
 
-		} else if(_.isObject(obj)) {
-			return _.mapValues(obj, xssFilter);
+		// } else if(_.isObject(obj)) {
+		// 	return _.mapValues(obj, xssFilter);
 
-		} else if(_.isString(obj)) {
+		// } else 
+		if(_.isString(obj)) {
 			return obj.replace(/\< *\/* *script *>*/gi,'').replace(/javascript/gi,'');
 		} else
 			return obj;

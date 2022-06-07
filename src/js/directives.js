@@ -167,13 +167,13 @@ angular.module('netStatsApp.directives', [])
 							barSpacing : 1,
 							tooltipSuffix: '',
 							chartRangeMax: 8000,
-							colorMap: jQuery.range_map({
-								'0:1': '#10a0de',
-								'1:1000': '#7bcc3a',
-								'1001:3000': '#FFD162',
-								'3001:7000': '#ff8a00',
-								'7001:': '#F74B4B'
-							}),
+							// colorMap: jQuery.range_map({
+							// 	'0:1': '#10a0de',
+							// 	'1:1000': '#7bcc3a',
+							// 	'1001:3000': '#FFD162',
+							// 	'3001:7000': '#ff8a00',
+							// 	'7001:': '#F74B4B'
+							// }),
 							tooltipFormatter: function (spark, opt, ms) {
 								var tooltip = '<div class="tooltip-arrow"></div><div class="tooltip-inner">';
 								tooltip += formatTime(ms[0].value);
